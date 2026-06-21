@@ -2,7 +2,9 @@ apiVersion: v1beta1
 kind: AgentConfig
 metadata:
   name: mycluster
-rendezvousIP: 192.168.11.10
+rendezvousIP: 192.168.11.10 
+#This is the rendezvousIP for the Cluster. 
+#It is used for the initial bootstrap of the cluster and should be reachable by all hosts in the cluster.
 
 hosts:
   - hostname: master-0
