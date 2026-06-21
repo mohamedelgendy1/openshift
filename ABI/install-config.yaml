@@ -1,0 +1,41 @@
+#"ABI Compact Cluster 3 Masters 'Schedulable' and 0 Workers"
+apiVersion: v1
+baseDomain: mohamed-elgendy.com
+metadata:
+  name: gendy-ocp4
+#fips: True #Uncomment this line to enable FIPS mode on the cluster.
+networking:
+
+  clusterNetwork:
+    # This is the Cluster Network CIDR and Host Prefix.
+    - cidr: 10.128.0.0/14
+      hostPrefix: 23 #controls how many Pod IPs are carved out per node from the larger CIDR.
+
+  machineNetwork:
+    # This is the Cluster Machine Network CIDR "The rendezvousIP, apiVIP, and ingressVIP".
+    - cidr: 192.168.11.0/24
+
+  serviceNetwork:
+    # This is the Cluster Services Network "ClusterIP, NodePort, LoadBalancer".
+    - 172.30.0.0/16
+
+  networkType: OVNKubernetes
+
+compute:
+  - name: worker
+    replicas: 0
+
+controlPlane:
+  name: master
+  replicas: 3
+
+platform:
+  baremetal:
+    apiVIPs:
+      - 192.168.11.3
+    ingressVIPs:
+      - 192.168.11.4
+
+pullSecret: '<your-pull-secret -- get it from https://cloud.redhat.com/openshift/install/pull-secret>'
+
+sshKey: '<contents of ~/.ssh/id_ed25519.pub>'

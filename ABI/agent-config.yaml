@@ -1,0 +1,89 @@
+apiVersion: v1beta1
+kind: AgentConfig
+metadata:
+  name: mycluster
+rendezvousIP: 192.168.11.10
+
+hosts:
+  - hostname: master-0
+    role: master
+    interfaces:
+      - name: eno1
+        macAddress: #Get this from "ip a" command on the host.
+    networkConfig:
+      interfaces:
+        - name: eno1
+          type: ethernet
+          state: up
+          mac-address: #Get this from "ip a" command on the host.
+          ipv4:
+            enabled: true
+            address:
+              - ip: 192.168.11.10
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 192.168.11.1
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 192.168.11.1
+            next-hop-interface: eno1
+
+
+  - hostname: master-1
+    role: master
+    interfaces:
+      - name: eno1
+        macAddress: #Get this from "ip a" command on the host.
+    networkConfig:
+      interfaces:
+        - name: eno1
+          type: ethernet
+          state: up
+          mac-address: #Get this from "ip a" command on the host.
+          ipv4:
+            enabled: true
+            address:
+              - ip: 192.168.11.11
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 192.168.11.1
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 192.168.11.1
+            next-hop-interface: eno1
+
+
+  - hostname: master-2
+    role: master
+    interfaces:
+      - name: eno1
+        macAddress: #Get this from "ip a" command on the host.
+    networkConfig:
+      interfaces:
+        - name: eno1
+          type: ethernet
+          state: up
+          mac-address: #Get this from "ip a" command on the host.
+          ipv4:
+            enabled: true
+            address:
+              - ip: 192.168.11.12
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 192.168.11.1
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 192.168.11.1
+            next-hop-interface: eno1
