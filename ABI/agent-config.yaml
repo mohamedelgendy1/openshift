@@ -4,7 +4,8 @@ metadata:
   name: mycluster
 rendezvousIP: 192.168.11.10 
 #This is the rendezvousIP for the Cluster. 
-#It is used for the initial bootstrap of the cluster and should be reachable by all hosts in the cluster.
+#It is used for the initial bootstrap of the cluster "it will be one of the master nodes on the cluster".
+#This will run the initial etcd, api-server, scheduler, controller-manager.
 
 hosts:
   - hostname: master-0
@@ -40,6 +41,12 @@ hosts:
     interfaces:
       - name: eno1
         macAddress: #Get this from "ip a" command on the host.
+    
+    rootDeviceHints:
+      deviceName: /dev/sda
+    #This is the rootDeviceHints section. It is used to specify the root device for the cluster, but it is optional.
+
+
     networkConfig:
       interfaces:
         - name: eno1

@@ -4,6 +4,15 @@ baseDomain: mohamed-elgendy.com
 metadata:
   name: gendy-ocp4
 #fips: True #Uncomment this line to enable FIPS mode on the cluster.
+
+compute:
+  - name: worker
+    replicas: 0
+
+controlPlane:
+  name: master
+  replicas: 3
+
 networking:
 
   clusterNetwork:
@@ -20,14 +29,6 @@ networking:
     - 172.30.0.0/16
 
   networkType: OVNKubernetes
-
-compute:
-  - name: worker
-    replicas: 0
-
-controlPlane:
-  name: master
-  replicas: 3
 
 platform:
   baremetal:
