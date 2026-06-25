@@ -9,6 +9,8 @@ rendezvousIP: 192.168.11.10
 
 hosts:
   - hostname: master-0
+    rootdeviceHints:
+      wwn: #(VD 0 'RADI 1 - Mirroring ')Get this from the "Cisco Integrated Management Controller (CIMC)" for the host.
     role: master
     interfaces:
       - name: eno1
@@ -37,6 +39,8 @@ hosts:
 
 
   - hostname: master-1
+    rootdeviceHints:
+      wwn: #(VD 0 'RADI 1 - Mirroring ')Get this from the "Cisco Integrated Management Controller (CIMC)" for the host.
     role: master
     interfaces:
       - name: eno1
@@ -71,6 +75,8 @@ hosts:
 
 
   - hostname: master-2
+    rootdeviceHints:
+      wwn: #(VD 0 'RADI 1 - Mirroring ')Get this from the "Cisco Integrated Management Controller (CIMC)" for the host.
     role: master
     interfaces:
       - name: eno1
