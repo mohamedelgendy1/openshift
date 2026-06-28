@@ -1,11 +1,13 @@
 apiVersion: v1beta1
 kind: AgentConfig
 metadata:
- name: 
-rendezvousIP:
+ name: openshiftnonprod-virt
+rendezvousIP: 10.186.27.11
 additionalNTPSources:
-  - 
-  - 
+  - #from customer
+  - #from customer
+  - #from customer
+  - #from customer
 
 hosts:
  - hostname: 
@@ -14,9 +16,9 @@ hosts:
      deviceName: "/dev/sdb"
    interfaces:
    - name: #name of interface-1 from Live ISO
-     macAddress: #mac address-1
+     macAddress: 00:25:B5:23:AA:88
    - name: #name of interface-2 from Live ISO
-     macAddress: #mac address-2
+     macAddress: 00:25:B5:23:BB:88
    networkConfig:
       interfaces:
         - name: bond0.(#vlan id)
@@ -28,7 +30,7 @@ hosts:
           ipv4:
             enabled: true
             address:
-              - ip: 10.51.201.20
+              - ip: 10.186.27.11
                 prefix-length: 24
             dhcp: false
         - name: bond0
@@ -54,8 +56,8 @@ hosts:
           config:
             - destination: 0.0.0.0/0
               next-hop-address: #from customer
-              next-hop-interface: bond0
-              table-id: #from customer
+              next-hop-interface: bond0.(#vlan id)
+              table-id: 254
 
 
  - hostname: 
@@ -105,7 +107,7 @@ hosts:
             - destination: 0.0.0.0/0
               next-hop-address: #from customer
               next-hop-interface: bond0
-              table-id: #from customer
+              table-id: 254
 
  - hostname: 
    role: master
@@ -154,4 +156,4 @@ hosts:
             - destination: 0.0.0.0/0
               next-hop-address: #from customer
               next-hop-interface: bond0
-              table-id: #from customer
+              table-id: 254
