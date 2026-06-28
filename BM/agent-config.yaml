@@ -1,0 +1,158 @@
+apiVersion: v1beta1
+kind: AgentConfig
+metadata:
+  name: openshiftnonprod-virt
+rendezvousIP: 10.186.27.11
+additionalNTPSources:
+  - 192.168.255.252
+  - 192.168.255.253
+
+hosts:
+ - hostname: "openshiftnonprod-virt-0"
+   role: master
+   rootDeviceHints:
+     deviceName: "/dev/sdb" 
+   interfaces:
+   - name: eno5
+     macAddress: 00:25:B5:23:AA:88
+   - name: eno6
+     macAddress: 00:25:B5:23:BB:88
+   networkConfig:
+      interfaces:
+        - name: bond0.2878
+          type: vlan
+          state: up
+          vlan:
+            base-iface: bond0
+            id: 2878
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.186.27.10
+                prefix-length: 24
+            dhcp: false
+        - name: bond0
+          type: bond
+          state: up
+          ipv4:
+            enabled: false
+          ipv6:
+            enabled: false
+          link-aggregation:
+            mode: "active-active"
+            options:
+              miimon: "150"
+            port:
+              - eno5
+              - eno6
+      dns-resolver:
+        config:
+          server:
+                - 10.196.60.6
+                - 10.236.52.20
+      routes:
+          config:
+            - destination: 0.0.0.0/0
+              next-hop-address: 10.186.27.254
+              next-hop-interface: bond0.2878
+              table-id: 254
+
+
+ - hostname: "openshiftnonprod-virt-1"
+   role: master
+   rootDeviceHints:
+     deviceName: "/dev/sde"
+   interfaces:
+   - name: eno5
+     macAddress: 00:25:B5:23:AA:98
+   - name: eno6
+     macAddress: 00:25:B5:23:BB:98
+   networkConfig:
+      interfaces:
+        - name: bond0.2878
+          type: vlan
+          state: up
+          vlan:
+            base-iface: bond0
+            id: 2878
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.186.27.11
+                prefix-length: 24
+            dhcp: false
+        - name: bond0
+          type: bond
+          state: up
+          ipv4:
+            enabled: false
+          ipv6:
+            enabled: false
+          link-aggregation:
+            mode: "active-active"
+            options:
+              miimon: "150"
+            port:
+              - eno5
+              - eno6
+      dns-resolver:
+        config:
+          server:
+                - 10.196.60.6
+                - 10.236.52.20
+      routes:
+          config:
+            - destination: 0.0.0.0/0
+              next-hop-address: 10.186.27.254
+              next-hop-interface: bond0.2878
+              table-id: 254
+
+
+ - hostname: "openshiftnonprod-virt-2"
+   role: master
+   rootDeviceHints:
+     deviceName: "/dev/sde" 
+   interfaces:
+   - name: eno5
+     macAddress: 00:25:B5:23:AA:9C
+   - name: eno6
+     macAddress: 00:25:B5:23:BB:9C
+   networkConfig:
+      interfaces:
+        - name: bond0.2878
+          type: vlan
+          state: up
+          vlan:
+            base-iface: bond0
+            id: 2878
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.186.27.12
+                prefix-length: 24
+            dhcp: false
+        - name: bond0
+          type: bond
+          state: up
+          ipv4:
+            enabled: false
+          ipv6:
+            enabled: false
+          link-aggregation:
+            mode: "active-active"
+            options:
+              miimon: "150"
+            port:
+              - eno5
+              - eno6
+      dns-resolver:
+        config:
+          server:
+                - 10.196.60.6
+                - 10.236.52.20
+      routes:
+          config:
+            - destination: 0.0.0.0/0
+              next-hop-address: 10.186.27.254
+              next-hop-interface: bond0.2878
+              table-id: 254
