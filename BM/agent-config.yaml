@@ -76,7 +76,7 @@ hosts:
           state: up
           vlan:
             base-iface: bond0
-            id: #get it from the Live ISO or provided by customer
+            id: 2878
           ipv4:
             enabled: true
             address:
@@ -106,7 +106,7 @@ hosts:
           config:
             - destination: 0.0.0.0/0
               next-hop-address: 10.186.27.254
-              next-hop-interface: bond0.(#vlan id)
+              next-hop-interface: bond0.2878
               table-id: 254
 
  - hostname: 
@@ -120,12 +120,12 @@ hosts:
      macAddress: 00:25:B5:23:BB:04
    networkConfig:
       interfaces:
-        - name: bond0.(#vlan id)
+        - name: bond0.2878
           type: vlan
           state: up
           vlan:
             base-iface: bond0
-            id: #get it from the Live ISO or provided by customer
+            id: 2878
           ipv4:
             enabled: true
             address:
@@ -155,5 +155,5 @@ hosts:
           config:
             - destination: 0.0.0.0/0
               next-hop-address: 10.186.27.254
-              next-hop-interface: bond0.(#vlan id)
+              next-hop-interface: bond0.2878
               table-id: 254
