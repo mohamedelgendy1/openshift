@@ -4,13 +4,11 @@ metadata:
  name: openshiftnonprod-virt
 rendezvousIP: 10.186.27.11
 additionalNTPSources:
-  - #from customer
-  - #from customer
-  - #from customer
-  - #from customer
+  - 192.168.255.252
+  - 192.168.255.253
 
 hosts:
- - hostname: 
+ - hostname: "openshiftnonprod-virt-0"
    role: master
    rootDeviceHints:
      deviceName: "/dev/sdb" #From Live ISO
@@ -19,6 +17,56 @@ hosts:
      macAddress: 00:25:B5:23:AA:88
    - name: #name of interface-2 from Live ISO
      macAddress: 00:25:B5:23:BB:88
+   networkConfig:
+      interfaces:
+        - name: bond0.2878
+          type: vlan
+          state: up
+          vlan:
+            base-iface: bond0
+            id: 2878
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.186.27.10
+                prefix-length: 24
+            dhcp: false
+        - name: bond0
+          type: bond
+          state: up
+          ipv4:
+            enabled: false
+          ipv6:
+            enabled: false
+          link-aggregation:
+            mode: "active-active"
+            options:
+              miimon: "150"
+            port:
+              - #interface-1
+              - #interface-2
+      dns-resolver:
+        config:
+          server:
+                - 10.196.60.6
+                - 10.236.52.20
+      routes:
+          config:
+            - destination: 0.0.0.0/0
+              next-hop-address: 10.186.27.254
+              next-hop-interface: bond0.2878
+              table-id: 254
+
+
+ - hostname: "openshiftnonprod-virt-1"
+   role: master
+   rootDeviceHints:
+     deviceName: "/dev/sdb" #From Live ISO
+   interfaces:
+   - name: #name of interface-1 from Live ISO
+     macAddress: 00:25:B5:23:AA:43
+   - name: #name of interface-2 from Live ISO
+     macAddress: 00:25:B5:23:BB:42
    networkConfig:
       interfaces:
         - name: bond0.2878
@@ -50,8 +98,8 @@ hosts:
       dns-resolver:
         config:
           server:
-                - #from customer
-                - #from customer
+                - 10.196.60.6
+                - 10.236.52.20
       routes:
           config:
             - destination: 0.0.0.0/0
@@ -59,16 +107,15 @@ hosts:
               next-hop-interface: bond0.2878
               table-id: 254
 
-
- - hostname: 
+ - hostname: "openshiftnonprod-virt-2"
    role: master
    rootDeviceHints:
      deviceName: "/dev/sdb" #From Live ISO
    interfaces:
    - name: #name of interface-1 from Live ISO
-     macAddress: 00:25:B5:23:AA:43
+     macAddress: 00:25:B5:23:AA:04
    - name: #name of interface-2 from Live ISO
-     macAddress: 00:25:B5:23:BB:42
+     macAddress: 00:25:B5:23:BB:04
    networkConfig:
       interfaces:
         - name: bond0.2878
@@ -100,57 +147,8 @@ hosts:
       dns-resolver:
         config:
           server:
-                - #from customer
-                - #from customer
-      routes:
-          config:
-            - destination: 0.0.0.0/0
-              next-hop-address: 10.186.27.254
-              next-hop-interface: bond0.2878
-              table-id: 254
-
- - hostname: 
-   role: master
-   rootDeviceHints:
-     deviceName: "/dev/sdb" #From Live ISO
-   interfaces:
-   - name: #name of interface-1 from Live ISO
-     macAddress: 00:25:B5:23:AA:04
-   - name: #name of interface-2 from Live ISO
-     macAddress: 00:25:B5:23:BB:04
-   networkConfig:
-      interfaces:
-        - name: bond0.2878
-          type: vlan
-          state: up
-          vlan:
-            base-iface: bond0
-            id: 2878
-          ipv4:
-            enabled: true
-            address:
-              - ip: 10.186.27.13
-                prefix-length: 24
-            dhcp: false
-        - name: bond0
-          type: bond
-          state: up
-          ipv4:
-            enabled: false
-          ipv6:
-            enabled: false
-          link-aggregation:
-            mode: "active-active"
-            options:
-              miimon: "150"
-            port:
-              - #interface-1
-              - #interface-2
-      dns-resolver:
-        config:
-          server:
-                - #from customer
-                - #from customer
+                - 10.196.60.6
+                - 10.236.52.20
       routes:
           config:
             - destination: 0.0.0.0/0
