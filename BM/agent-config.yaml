@@ -1,7 +1,7 @@
 apiVersion: v1beta1
 kind: AgentConfig
 metadata:
- name: openshiftnonprod-virt
+  name: openshiftnonprod-virt
 rendezvousIP: 10.186.27.11
 additionalNTPSources:
   - 192.168.255.252
@@ -11,11 +11,11 @@ hosts:
  - hostname: "openshiftnonprod-virt-0"
    role: master
    rootDeviceHints:
-     deviceName: "/dev/sdb" #From Live ISO
+     deviceName: "/dev/sdb" 
    interfaces:
-   - name: #name of interface-1 from Live ISO
+   - name: eno5
      macAddress: 00:25:B5:23:AA:88
-   - name: #name of interface-2 from Live ISO
+   - name: eno6
      macAddress: 00:25:B5:23:BB:88
    networkConfig:
       interfaces:
@@ -43,8 +43,8 @@ hosts:
             options:
               miimon: "150"
             port:
-              - #interface-1
-              - #interface-2
+              - eno5
+              - eno6
       dns-resolver:
         config:
           server:
@@ -61,12 +61,12 @@ hosts:
  - hostname: "openshiftnonprod-virt-1"
    role: master
    rootDeviceHints:
-     deviceName: "/dev/sdb" #From Live ISO
+     deviceName: "/dev/sde"
    interfaces:
-   - name: #name of interface-1 from Live ISO
-     macAddress: 00:25:B5:23:AA:43
-   - name: #name of interface-2 from Live ISO
-     macAddress: 00:25:B5:23:BB:42
+   - name: eno5
+     macAddress: 00:25:B5:23:AA:98
+   - name: eno6
+     macAddress: 00:25:B5:23:BB:98
    networkConfig:
       interfaces:
         - name: bond0.2878
@@ -93,8 +93,8 @@ hosts:
             options:
               miimon: "150"
             port:
-              - #interface-1
-              - #interface-2
+              - eno5
+              - eno6
       dns-resolver:
         config:
           server:
@@ -107,15 +107,16 @@ hosts:
               next-hop-interface: bond0.2878
               table-id: 254
 
+
  - hostname: "openshiftnonprod-virt-2"
    role: master
    rootDeviceHints:
-     deviceName: "/dev/sdb" #From Live ISO
+     deviceName: "/dev/sde" 
    interfaces:
-   - name: #name of interface-1 from Live ISO
-     macAddress: 00:25:B5:23:AA:04
-   - name: #name of interface-2 from Live ISO
-     macAddress: 00:25:B5:23:BB:04
+   - name: eno5
+     macAddress: 00:25:B5:23:AA:9C
+   - name: eno6
+     macAddress: 00:25:B5:23:BB:9C
    networkConfig:
       interfaces:
         - name: bond0.2878
@@ -142,8 +143,8 @@ hosts:
             options:
               miimon: "150"
             port:
-              - #interface-1
-              - #interface-2
+              - eno5
+              - eno6
       dns-resolver:
         config:
           server:
