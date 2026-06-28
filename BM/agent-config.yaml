@@ -13,18 +13,18 @@ hosts:
    rootDeviceHints:
      deviceName: "/dev/sdb"
    interfaces:
-   - name: ens35f0np0
-     macAddress: 8c:84:74:5d:36:00
-   - name: ens33f0np0
-     macAddress: 8c:84:74:5d:36:01
+   - name: #name of interface-1 from Live ISO
+     macAddress: #mac address-1
+   - name: #name of interface-2 from Live ISO
+     macAddress: #mac address-2
    networkConfig:
       interfaces:
-        - name: bond0.1201
+        - name: bond0.(#vlan id)
           type: vlan
           state: up
           vlan:
             base-iface: bond0
-            id: 1201
+            id: #get it from the Live ISO or provided by customer
           ipv4:
             enabled: true
             address:
@@ -43,38 +43,38 @@ hosts:
             options:
               miimon: "150"
             port:
-              - eno12399np0
-              - eno12409np0
+              - #interface-1
+              - #interface-2
       dns-resolver:
         config:
           server:
-                - 10.0.2.99
-                - 10.0.2.100
+                - #from customer
+                - #from customer
       routes:
           config:
             - destination: 0.0.0.0/0
-              next-hop-address: 10.51.201.1
+              next-hop-address: #from customer
               next-hop-interface: bond0
-              table-id: 254
+              table-id: #from customer
 
 
- - hostname: dai-cldp01
+ - hostname: 
    role: master
    rootDeviceHints:
      deviceName: "/dev/sdb"
    interfaces:
-   - name: ens35f0np0
-     macAddress: 8c:84:74:5d:36:00
-   - name: ens33f0np0
-     macAddress: 8c:84:74:5d:36:01
+   - name: #name of interface-1 from Live ISO
+     macAddress: #mac address-1
+   - name: #name of interface-2 from Live ISO
+     macAddress: #mac address-2
    networkConfig:
       interfaces:
-        - name: bond0.1201
+        - name: bond0.(#vlan id)
           type: vlan
           state: up
           vlan:
             base-iface: bond0
-            id: 1201
+            id: #get it from the Live ISO or provided by customer
           ipv4:
             enabled: true
             address:
@@ -93,38 +93,37 @@ hosts:
             options:
               miimon: "150"
             port:
-              - eno12399np0
-              - eno12409np0
+              - #interface-1
+              - #interface-2
       dns-resolver:
         config:
           server:
-                - 10.0.2.99
-                - 10.0.2.100
+                - #from customer
+                - #from customer
       routes:
           config:
             - destination: 0.0.0.0/0
-              next-hop-address: 10.51.201.1
+              next-hop-address: #from customer
               next-hop-interface: bond0
-              table-id: 254
+              table-id: #from customer
 
-
- - hostname: dai-cldp01
+ - hostname: 
    role: master
    rootDeviceHints:
      deviceName: "/dev/sdb"
    interfaces:
-   - name: ens35f0np0
-     macAddress: 8c:84:74:5d:36:00
-   - name: ens33f0np0
-     macAddress: 8c:84:74:5d:36:01
+   - name: #name of interface-1 from Live ISO
+     macAddress: #mac address-1
+   - name: #name of interface-2 from Live ISO
+     macAddress: #mac address-2
    networkConfig:
       interfaces:
-        - name: bond0.1201
+        - name: bond0.(#vlan id)
           type: vlan
           state: up
           vlan:
             base-iface: bond0
-            id: 1201
+            id: #get it from the Live ISO or provided by customer
           ipv4:
             enabled: true
             address:
@@ -143,17 +142,16 @@ hosts:
             options:
               miimon: "150"
             port:
-              - eno12399np0
-              - eno12409np0
+              - #interface-1
+              - #interface-2
       dns-resolver:
         config:
           server:
-                - 10.0.2.99
-                - 10.0.2.100
+                - #from customer
+                - #from customer
       routes:
           config:
             - destination: 0.0.0.0/0
-              next-hop-address: 10.51.201.1
+              next-hop-address: #from customer
               next-hop-interface: bond0
-              table-id: 254
-
+              table-id: #from customer
