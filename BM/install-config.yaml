@@ -1,8 +1,8 @@
 #"ABI Compact Cluster 3 Masters 'Schedulable' and 0 Workers"
 apiVersion: v1
-baseDomain: openshiftvirtualizationnonprod.staff.banquemisr.bank
+baseDomain: openshiftnonprod-virt.staff.banquemisr.bank
 metadata:
-  name: openshiftvirtualizationnonprod
+  name: openshiftnonprod-virt
 #fips: True #Uncomment this line to enable FIPS mode on the cluster.
 
 compute:
@@ -22,7 +22,7 @@ networking:
 
   machineNetwork:
     # This is the Cluster Machine Network CIDR "The rendezvousIP, apiVIP, and ingressVIP".
-    - cidr: 192.168.11.0/24
+    - cidr: 10.186.27.9/24
 
   serviceNetwork:
     # This is the Cluster Services Network "ClusterIP, NodePort, LoadBalancer".
@@ -33,9 +33,9 @@ networking:
 platform:
   baremetal:
     apiVIPs:
-      - 192.168.11.3
+      - 10.186.27.7
     ingressVIPs:
-      - 192.168.11.4
+      - 10.186.27.8
 
 pullSecret: '<your-pull-secret -- get it from https://cloud.redhat.com/openshift/install/pull-secret>'
 
