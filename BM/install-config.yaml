@@ -3,7 +3,6 @@ apiVersion: v1
 baseDomain: openshiftnonprod-virt.staff.banquemisr.bank
 metadata:
   name: openshiftnonprod-virt
-#fips: True #Uncomment this line to enable FIPS mode on the cluster.
 
 compute:
   - name: worker
