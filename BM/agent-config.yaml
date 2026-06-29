@@ -39,7 +39,7 @@ hosts:
           ipv6:
             enabled: false
           link-aggregation:
-            mode: "active-active"
+            mode: "6"
             options:
               miimon: "150"
             port:
@@ -89,7 +89,7 @@ hosts:
           ipv6:
             enabled: false
           link-aggregation:
-            mode: "active-active"
+            mode: "6"
             options:
               miimon: "150"
             port:
@@ -139,7 +139,7 @@ hosts:
           ipv6:
             enabled: false
           link-aggregation:
-            mode: "active-active"
+            mode: "6"
             options:
               miimon: "150"
             port:
